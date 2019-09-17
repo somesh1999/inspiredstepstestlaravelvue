@@ -163,7 +163,7 @@
                             </div>
                             <div class="right-icon text-right">
                                 <ul>
-                                    <li><a href="javascript:void(0)" id="search"><i class="fa fa-search"></i></a></li>
+                                    {{-- <li><a href="javascript:void(0)" id="search"><i class="fa fa-search"></i></a></li> --}}
                                 </ul>
                             </div> <!-- right icon -->
                         </nav> <!-- nav -->

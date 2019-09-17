@@ -11,9 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script>window.Laravel = {csrfToken: '{{ csrf_token() }}'}</script>
+   <!-- CSRF Token -->
+   <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- <title>{{ config('app.name', 'Inspired Steps') }}</title> --}}
     <title>@yield('PageTitle')</title>
@@ -115,13 +114,13 @@
                           
                             <div class="login-register">
                                 <ul>
-                                    <li style="font-weight:bold; color:gray">Hello, {{Auth::user()->name }}</li>
+                                    <li style="font-weight:bold; color:gray; font-size:15px;">Hello, {{Auth::user()->name }}</li>
                                     <li><a href="{{ route('logout') }}"onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                            {{ __('Logout') }}</a></li>
                                 </ul>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
+                                    {{ csrf_field() }}
                                     </form>
                             </div>
                         </div> <!-- header right -->
@@ -159,7 +158,7 @@
                             </div>
                             <div class="right-icon text-right">
                                 <ul>
-                                    <li><a href="javascript:void(0)" id="search"><i class="fa fa-search"></i></a></li>
+                                    {{-- <li><a href="javascript:void(0)" id="search"><i class="fa fa-search"></i></a></li> --}}
                                 </ul>
                             </div> <!-- right icon -->
                         </nav> <!-- nav -->
