@@ -34,11 +34,12 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validatedData = $this->validate($request,[
             'name' => 'required',
             'email' => 'required|email',
             'countrycode' => 'required',
-            'phone' => 'required'
+            'phone' => 'required',
+            'password'=> 'required'
         ]);
 
         $checkemail = \App\User::where(['email'=>$request->email])->get();

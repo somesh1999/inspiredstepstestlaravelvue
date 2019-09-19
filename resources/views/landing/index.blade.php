@@ -10,7 +10,17 @@ z-index: 100;
 
 .category-form .main-form .single-form input{
     height:50px;
-}</style>
+}
+.category-form{
+    margin-top:-600px;
+}
+
+@media(max-width:780px){
+ .category-form{
+    margin-top:-100px;
+}   
+}
+</style>
 @endsection
 
 @section('content')
@@ -59,7 +69,7 @@ z-index: 100;
                 </div> <!-- category -->
             </div>
             <div class="col-lg-6">
-                <div class="category-form" style="margin-top:-500px;">
+                <div class="category-form">
                     <div class="form-title text-center">
                         <h3>Sign up now</h3>
                     </div>
@@ -82,6 +92,9 @@ z-index: 100;
                                 </div>
                                 
                                 
+                            </div>
+                            <div class="single-form">
+                                <input type="password" placeholder="Password" name="password">
                             </div>
                             <div class="single-form">
                                 <button class="main-btn" type="submit">Register</button>
@@ -439,12 +452,12 @@ $('#registerform').submit(function(e){
         processData: false,
         success:function(data){
             swal("Here you go!","Successfully Registered. Please login to continue","success");
-            $('.main-btn').attr("disabled",false);
+            $('.main-btn').removeAttr("disabled");
                         
         },
         error: function(data){
         swal("Oops!!", data.responseJSON.message, "error");
-        $('.main-btn').attr("disabled",false);                
+        $('.main-btn').removeAttr("disabled");               
         }
     });
    

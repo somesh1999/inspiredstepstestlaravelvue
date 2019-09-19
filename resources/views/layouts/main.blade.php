@@ -99,7 +99,7 @@
     <!--====== HEADER PART START ======-->
     
     <header id="header-part" class="header-two">
-        <div class="header-top d-none d-lg-block">
+        <div class="header-top ">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
