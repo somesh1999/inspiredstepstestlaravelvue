@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $messenger=array("Whatsapp", "line", "kakao", "Instagram", "Wechat");
+        $financial_programme= array("Parent","Yourself","Others");
+        $skillset= array("Beginner","Intermediate","Advanced");
         return view('home');
     }
 }

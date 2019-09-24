@@ -18,3 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('registeruser','RegisterController@store')->name('register.store');
+
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::patch('profile','ProfileController@store')->name('profile.store');
+});

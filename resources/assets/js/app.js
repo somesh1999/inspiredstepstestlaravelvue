@@ -15,7 +15,12 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('example-component', require('./components/Example.vue').default);
+Vue.component('profile', require('./components/Profile.vue').default);
+
+import VueFlashMessage from 'vue-flash-message';
+Vue.use(VueFlashMessage);
+require('vue-flash-message/dist/vue-flash-message.min.css');
 
 const app = new Vue({
     el: '#app'

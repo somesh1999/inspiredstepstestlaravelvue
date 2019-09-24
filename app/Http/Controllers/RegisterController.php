@@ -52,7 +52,17 @@ class RegisterController extends Controller
         $user->is_email_verified= 1;
         $user->password=bcrypt($request->password);
         if($user->save()){
-            return Response()->json($user,201);
+            $userobj = \App\User::where(["email"=>$request->email])->first();
+            $profile = new \App\Profile();
+            $profile->user_id=$userobj->id;
+            $profile->contact_number = $request->countrycode." ".$request->phone;
+            if($profile->save()){
+                return Response()->json($user,201);    
+            }
+            else{
+                return Response()->json(["success"=>false,"message"=>"Error while saving"],500);
+            }
+            
         }else{
             return Response()->json(["success"=>false,"message"=>"Error while saving"],500);
         }

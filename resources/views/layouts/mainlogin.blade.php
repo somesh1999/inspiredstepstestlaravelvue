@@ -62,6 +62,8 @@
 
       <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" rel="stylesheet">
 
+      <script src="{{ asset('js/app.js') }}" defer></script>
+
       <style>
       .sa-button-container{
           margin-top:30px !important;

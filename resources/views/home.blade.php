@@ -1,25 +1,34 @@
 @extends('layouts.mainlogin')
 @section('PageTitle', 'Inspired Steps')
 
+@section('css')
+<style>
+.nice-select{
+    width:100%;
+}
+.contact-from .main-form .single-form input, .contact-from .main-form .single-form select{
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    border: 1px solid #a1a1a1;
+    border-radius: 5px;
+    color: #8a8a8a;
+    font-size: 15px;
+}
+.contact-from .main-form .single-form textarea{
+    width: 100%;
+    border: 1px solid #a1a1a1;
+    border-radius: 5px;
+    color: #8a8a8a;
+    font-size: 15px;
+}
+</style>
+    
+@endsection
 @section('content')
-<div class="container"  style="margin-bottom:100px; margin-top:60px;">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card" style="font-size:14px;">
-                <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
+<div id="app">
+<profile></profile>
 </div>
 
 
