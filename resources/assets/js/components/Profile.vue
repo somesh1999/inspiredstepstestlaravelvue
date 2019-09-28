@@ -19,7 +19,7 @@
                                 </div>
                                <div class="col-md-6">
                                     <div class="single-form form-group">
-                                        <datepicker v-model="fields.dateofbirth" name="dateofbirth" :typeable="true" :bootstrap-styling="true" class="dateofbirth"></datepicker>
+                                        <datepicker v-model="fields.dateofbirth"  placeholder="Date of birth" name="dateofbirth" :typeable="true" :bootstrap-styling="true" class="dateofbirth"></datepicker>
                                          <div v-if="errors && errors.dateofbirth" class="help-block with-errors">{{errors.dateofbirth[0]}}</div>
                                     </div> <!-- single form -->
                                 </div>
@@ -160,6 +160,7 @@
 
 <script>
 import Datepicker from 'vuejs-datepicker';
+import moment from 'moment';
 
 export default {
     data(){
@@ -173,9 +174,10 @@ export default {
                financial_programme: "",
                korean_skills: "",
                english_skills: "",
-               dateofbirth: new Date(),
+               dateofbirth: null,
            },
            errors:{},
+           //DatePickerFormat: 'dd/MM/yyyy',
        }
    },
 
@@ -231,7 +233,9 @@ export default {
          this.flash(msg, type, {
             timeout: 2000,
             });
-    }
+    },
+
+   
 
      
 

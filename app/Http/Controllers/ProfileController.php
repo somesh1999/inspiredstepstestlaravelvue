@@ -48,4 +48,24 @@ class ProfileController extends Controller
             return Response()->json(["success"=>false,"message"=>"Your expired expired. Please login again"],405);
         }
     }
+
+
+
+    public function show()
+    {
+        $user = \Auth::User();
+        $user->load("profile");
+        $result = [
+            "userID"=>$user->id,
+            "name"=>$user->name,
+            "email"=>$user->email,
+            "profile"=>$user->profile,
+        ];
+        return Response()->json($result,200);
+    }
+
+    public function index()
+    {
+        return view('Profile.viewprofile');
+    }
 }

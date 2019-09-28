@@ -17,10 +17,17 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/Example.vue').default);
 Vue.component('profile', require('./components/Profile.vue').default);
+Vue.component('profileview', require('./components/ViewProfile.vue').default);
 
 import VueFlashMessage from 'vue-flash-message';
 Vue.use(VueFlashMessage);
 require('vue-flash-message/dist/vue-flash-message.min.css');
+import moment from 'moment';
+Vue.filter('formatDate', function(value) {
+    if (value) {
+      return moment(String(value)).format('MM/DD/YYYY')
+    }
+  });
 
 const app = new Vue({
     el: '#app'
