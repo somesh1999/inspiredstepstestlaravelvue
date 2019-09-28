@@ -21,4 +21,5 @@ Route::post('registeruser','RegisterController@store')->name('register.store');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::patch('profile','ProfileController@store')->name('profile.store');
+    Route::get('profile','ProfileController@show')->name('profile.show');
 });

@@ -147,8 +147,12 @@
 
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                     <ul class="navbar-nav ml-auto">
-                                            <li class="nav-item">
-                                                <a class="active" href="#">Home</a>
+                                            <li class="nav-item dropdown show">
+                                                <a class="dropdown-toggle active" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <a class="dropdown-item" href="{{url('home')}}" style="padding:10px;">Add</a>
+                                                    <a class="dropdown-item" href="profile"  style="padding:10px;">View</a>
+                                                  </div>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#">About</a>
