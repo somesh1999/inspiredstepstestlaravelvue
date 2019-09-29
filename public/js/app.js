@@ -51804,9 +51804,11 @@ var render = function() {
                               }
                             },
                             [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Messenger")
-                              ]),
+                              _c(
+                                "option",
+                                { attrs: { value: "", disabled: "" } },
+                                [_vm._v("Messenger")]
+                              ),
                               _vm._v(" "),
                               _vm._l(_vm.messenger, function(item) {
                                 return _c("option", [
@@ -51956,11 +51958,15 @@ var render = function() {
                               }
                             },
                             [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v(
-                                  "Financial Sponsor during your program stay"
-                                )
-                              ]),
+                              _c(
+                                "option",
+                                { attrs: { value: "", disabled: "" } },
+                                [
+                                  _vm._v(
+                                    "Financial Sponsor during your program stay"
+                                  )
+                                ]
+                              ),
                               _vm._v(" "),
                               _vm._l(_vm.financial_programme, function(item) {
                                 return _c("option", [

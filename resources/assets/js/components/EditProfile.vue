@@ -39,7 +39,7 @@
                                 <div class="col-md-6">
                                     <div class="single-form form-group">
                                         <select name="messenger" :value="this.fields.messenger" v-on:change="change('messenger',$event)">
-                                            <option value="">Messenger</option>
+                                            <option value="" disabled>Messenger</option>
                                             <option v-for="item in messenger">
                                                 {{item}}
                                             </option>
@@ -86,7 +86,7 @@
                                 <div class="col-md-12">
                                     <div class="single-form form-group">
                                         <select name="financial_programme" :value="this.fields.financial_programme" v-on:change="change('financial_programme',$event)">
-                                            <option value="">Financial Sponsor during your program stay</option>
+                                            <option value="" disabled>Financial Sponsor during your program stay</option>
                                            <option v-for="item in financial_programme">
                                                 {{item}}
                                             </option>
