@@ -1851,6 +1851,300 @@ module.exports = function isBuffer (obj) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/EditProfile.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/EditProfile.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      date: new Date(),
+      messenger: ["Whatsapp", "line", "kakao", "Instagram", "Wechat"],
+      financial_programme: ["Parent", "Yourself", "Others"],
+      skillset: ["Beginner", "Intermediate", "Advanced"],
+      fields: {
+        nationality: '',
+        dateofbirth: '',
+        country: '',
+        city: '',
+        messengerid: '',
+        finaleducation: '',
+        grade: '',
+        occupation: '',
+        countriesvisited: '',
+        reason: '',
+        comment: ''
+      },
+      errors: {} //DatePickerFormat: 'dd/MM/yyyy',
+
+    };
+  },
+  mounted: function mounted() {
+    this.fetchdata();
+    $(".vdp-datepicker__calendar").css("font-size", "16px");
+  },
+  components: {
+    Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  methods: {
+    change: function change(type, event) {
+      var fieldvalue = event.target.options[event.target.selectedIndex].value;
+
+      if (type == "messenger") {
+        this.fields.messenger = fieldvalue;
+      } else if (type == "financial_programme") {
+        this.fields.financial_programme = fieldvalue;
+      } else if (type == "korean_skills") {
+        this.fields.korean_skills = fieldvalue;
+      } else if (type == "english_skills") {
+        this.fields.english_skills = fieldvalue;
+      }
+    },
+    submit: function submit() {
+      var _this = this;
+
+      this.errors = {};
+      this.fields.nationality = $('input[name=nationality]').val();
+      this.fields.dateofbirth = $('input[name=dateofbirth]').val();
+      this.fields.country = $('input[name=country]').val();
+      this.fields.city = $('input[name=city]').val();
+      this.fields.messengerid = $('input[name=messengerid]').val();
+      this.fields.finaleducation = $('input[name=finaleducation]').val();
+      this.fields.grade = $('input[name=grade]').val();
+      this.fields.occupation = $('input[name=occupation]').val();
+      this.fields.countriesvisited = $('input[name=countriesvisited]').val();
+      this.fields.reason = $('textarea[name=reason]').val();
+      this.fields.comment = $('textarea[name=comment]').val(); // this.fields.english_skills = $('input[name=english_skills]').val();
+      // this.fields.korean_skills = $('input[name=korean_skills]').val();
+      // this.fields.financial_programme = $('input[name=financial_programme]').val();
+      // this.fields.messenger = $('input[name=messenger]').val();
+
+      window.axios.defaults.headers.common = {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      };
+      axios.patch('/api/profile', this.fields).then(function (response) {
+        _this.showflash("Profile updated successfully", "success");
+      })["catch"](function (error) {
+        console.log(error);
+
+        if (error.response.status === 422) {
+          _this.errors = error.response.data.errors || {};
+        } else if (error.response.status === 405) {
+          showflash("Session expired. Please login again", "error");
+        } else if (error.response.status === 500) {
+          showflash(error.responseJSON.message, "error");
+        }
+      });
+    },
+    showflash: function showflash(msg, type) {
+      this.flash(msg, type, {
+        timeout: 2000
+      });
+    },
+    fetchdata: function fetchdata() {
+      var _this2 = this;
+
+      window.axios.defaults.headers.common = {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      };
+      axios.get('/api/profile').then(function (response) {
+        //this.fields = response.data;
+        _this2.fields.nationality = response.data.profile.nationality;
+        _this2.fields.dateofbirth = response.data.profile.dateofbirth;
+        _this2.fields.country = response.data.profile.country;
+        _this2.fields.city = response.data.profile.city;
+        _this2.fields.messengerid = response.data.profile.messengerid;
+        _this2.fields.finaleducation = response.data.profile.finaleducation;
+        _this2.fields.grade = response.data.profile.grade;
+        _this2.fields.occupation = response.data.profile.occupation;
+        _this2.fields.countriesvisited = response.data.profile.countriesvisited;
+        _this2.fields.reason = response.data.profile.reason;
+        _this2.fields.comment = response.data.profile.comment;
+        _this2.fields.korean_skills = response.data.profile.korean_skills;
+        _this2.fields.english_skills = response.data.profile.english_skills;
+        _this2.fields.financial_programme = response.data.profile.financial_programme;
+        _this2.fields.messenger = response.data.profile.messenger;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/Example.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/Example.vue?vue&type=script&lang=js& ***!
@@ -51361,6 +51655,515 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/EditProfile.vue?vue&type=template&id=0e161f50&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/EditProfile.vue?vue&type=template&id=0e161f50& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    { staticClass: "pt-90 pb-120 gray-bg", attrs: { id: "contact-page" } },
+    [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-12" }, [
+            _c("div", { staticClass: "contact-from mt-30" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "main-form pt-45" }, [
+                _c(
+                  "form",
+                  {
+                    attrs: { "data-toggle": "validator" },
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.submit($event)
+                      }
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "single-form form-group" }, [
+                          _c("input", {
+                            attrs: {
+                              name: "nationality",
+                              type: "text",
+                              placeholder: "Nationality"
+                            },
+                            domProps: { value: this.fields.nationality },
+                            on: {
+                              input: function($event) {
+                                this.fields.nationality = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.nationality
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block with-errors" },
+                                [_vm._v(_vm._s(_vm.errors.nationality[0]))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          { staticClass: "single-form form-group" },
+                          [
+                            _c("datepicker", {
+                              staticClass: "dateofbirth",
+                              attrs: {
+                                value: this.fields.dateofbirth,
+                                placeholder: "Date of birth",
+                                name: "dateofbirth",
+                                typeable: true,
+                                "bootstrap-styling": true
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.errors && _vm.errors.dateofbirth
+                              ? _c(
+                                  "div",
+                                  { staticClass: "help-block with-errors" },
+                                  [_vm._v(_vm._s(_vm.errors.dateofbirth[0]))]
+                                )
+                              : _vm._e()
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "single-form form-group" }, [
+                          _c("input", {
+                            attrs: {
+                              name: "country",
+                              type: "text",
+                              placeholder: "Current Country"
+                            },
+                            domProps: { value: this.fields.country }
+                          }),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.country
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block with-errors" },
+                                [_vm._v(_vm._s(_vm.errors.country[0]))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "single-form form-group" }, [
+                          _c("input", {
+                            attrs: {
+                              name: "city",
+                              type: "text",
+                              placeholder: "Current City"
+                            },
+                            domProps: { value: this.fields.city }
+                          }),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.city
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block with-errors" },
+                                [_vm._v(_vm._s(_vm.errors.city[0]))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "single-form form-group" }, [
+                          _c(
+                            "select",
+                            {
+                              attrs: { name: "messenger" },
+                              domProps: { value: this.fields.messenger },
+                              on: {
+                                change: function($event) {
+                                  return _vm.change("messenger", $event)
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Messenger")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.messenger, function(item) {
+                                return _c("option", [
+                                  _vm._v(
+                                    "\r\n                                                " +
+                                      _vm._s(item) +
+                                      "\r\n                                            "
+                                  )
+                                ])
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.messenger
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block with-errors" },
+                                [_vm._v(_vm._s(_vm.errors.messenger[0]))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "single-form form-group" }, [
+                          _c("input", {
+                            attrs: {
+                              name: "messengerid",
+                              type: "text",
+                              placeholder: "Messenger ID"
+                            },
+                            domProps: { value: this.fields.messengerid }
+                          }),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.messengerid
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block with-errors" },
+                                [_vm._v(_vm._s(_vm.errors.messengerid[0]))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "single-form form-group" }, [
+                          _c("input", {
+                            attrs: {
+                              name: "finaleducation",
+                              type: "text",
+                              placeholder: "Final Education"
+                            },
+                            domProps: { value: this.fields.finaleducation }
+                          }),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.finaleducation
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block with-errors" },
+                                [_vm._v(_vm._s(_vm.errors.finaleducation[0]))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "single-form form-group" }, [
+                          _c("input", {
+                            attrs: {
+                              name: "grade",
+                              type: "text",
+                              placeholder:
+                                "If you still studying which grade or year are you in"
+                            },
+                            domProps: { value: this.fields.grade }
+                          }),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.grade
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block with-errors" },
+                                [_vm._v(_vm._s(_vm.errors.grade[0]))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "single-form form-group" }, [
+                          _c("input", {
+                            attrs: {
+                              name: "occupation",
+                              type: "text",
+                              placeholder: "Current Job/Occupation"
+                            },
+                            domProps: { value: this.fields.occupation }
+                          }),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.occupation
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block with-errors" },
+                                [_vm._v(_vm._s(_vm.errors.occupation[0]))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "single-form form-group" }, [
+                          _c("input", {
+                            attrs: {
+                              name: "countriesvisited",
+                              type: "text",
+                              placeholder: "Countries visited so far"
+                            },
+                            domProps: { value: this.fields.countriesvisited }
+                          }),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.countriesvisited
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block with-errors" },
+                                [_vm._v(_vm._s(_vm.errors.countriesvisited[0]))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "single-form form-group" }, [
+                          _c(
+                            "select",
+                            {
+                              attrs: { name: "financial_programme" },
+                              domProps: {
+                                value: this.fields.financial_programme
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.change(
+                                    "financial_programme",
+                                    $event
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v(
+                                  "Financial Sponsor during your program stay"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.financial_programme, function(item) {
+                                return _c("option", [
+                                  _vm._v(
+                                    "\r\n                                                " +
+                                      _vm._s(item) +
+                                      "\r\n                                            "
+                                  )
+                                ])
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.financial_programme
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block with-errors" },
+                                [
+                                  _vm._v(
+                                    _vm._s(_vm.errors.financial_programme[0])
+                                  )
+                                ]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "single-form form-group" }, [
+                          _c(
+                            "select",
+                            {
+                              attrs: { name: "korean_skills" },
+                              domProps: { value: this.fields.korean_skills },
+                              on: {
+                                change: function($event) {
+                                  return _vm.change("korean_skills", $event)
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "option",
+                                { attrs: { value: "", disabled: "" } },
+                                [_vm._v("Korean Level Skills")]
+                              ),
+                              _vm._v(" "),
+                              _vm._l(_vm.skillset, function(item) {
+                                return _c("option", [
+                                  _vm._v(
+                                    "\r\n                                                " +
+                                      _vm._s(item) +
+                                      "\r\n                                            "
+                                  )
+                                ])
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.korean_skills
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block with-errors" },
+                                [_vm._v(_vm._s(_vm.errors.korean_skills[0]))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "single-form form-group" }, [
+                          _c(
+                            "select",
+                            {
+                              attrs: { name: "english_sills" },
+                              domProps: { value: this.fields.english_skills },
+                              on: {
+                                change: function($event) {
+                                  return _vm.change("english_skills", $event)
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "option",
+                                { attrs: { value: "", disabled: "" } },
+                                [_vm._v("English Level Skills")]
+                              ),
+                              _vm._v(" "),
+                              _vm._l(_vm.skillset, function(item) {
+                                return _c("option", [
+                                  _vm._v(
+                                    "\r\n                                                " +
+                                      _vm._s(item) +
+                                      "\r\n                                            "
+                                  )
+                                ])
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.english_sills
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block with-errors" },
+                                [_vm._v(_vm._s(_vm.errors.english_sills[0]))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "single-form form-group" }, [
+                          _c("textarea", {
+                            attrs: {
+                              name: "reason",
+                              placeholder: "Reason you are interested in Korea"
+                            },
+                            domProps: { value: this.fields.reason }
+                          }),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.reason
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block with-errors" },
+                                [_vm._v(_vm._s(_vm.errors.reason[0]))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "single-form form-group" }, [
+                          _c("textarea", {
+                            attrs: { name: "comment", placeholder: "Comments" },
+                            domProps: { value: this.fields.comment }
+                          }),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.comment
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block with-errors" },
+                                [_vm._v(_vm._s(_vm.errors.comment[0]))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "single-form",
+                            staticStyle: { "font-size": "15px" }
+                          },
+                          [_c("flash-message")],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(1)
+                    ])
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section-title" }, [
+      _c("h4", [_vm._v("Edit your profile")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "single-form" }, [
+        _c("button", { staticClass: "main-btn", attrs: { type: "submit" } }, [
+          _vm._v("Send")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/Example.vue?vue&type=template&id=650f2efa&":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/Example.vue?vue&type=template&id=650f2efa& ***!
@@ -66915,6 +67718,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('example-component', __webpack_require__(/*! ./components/Example.vue */ "./resources/assets/js/components/Example.vue")["default"]);
 Vue.component('profile', __webpack_require__(/*! ./components/Profile.vue */ "./resources/assets/js/components/Profile.vue")["default"]);
 Vue.component('profileview', __webpack_require__(/*! ./components/ViewProfile.vue */ "./resources/assets/js/components/ViewProfile.vue")["default"]);
+Vue.component('editprofile', __webpack_require__(/*! ./components/EditProfile.vue */ "./resources/assets/js/components/EditProfile.vue")["default"]);
 
 Vue.use(vue_flash_message__WEBPACK_IMPORTED_MODULE_0___default.a);
 
@@ -66984,6 +67788,75 @@ if (token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/EditProfile.vue":
+/*!********************************************************!*\
+  !*** ./resources/assets/js/components/EditProfile.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditProfile_vue_vue_type_template_id_0e161f50___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditProfile.vue?vue&type=template&id=0e161f50& */ "./resources/assets/js/components/EditProfile.vue?vue&type=template&id=0e161f50&");
+/* harmony import */ var _EditProfile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditProfile.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/EditProfile.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditProfile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditProfile_vue_vue_type_template_id_0e161f50___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditProfile_vue_vue_type_template_id_0e161f50___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/EditProfile.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/EditProfile.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/assets/js/components/EditProfile.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditProfile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditProfile.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/EditProfile.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditProfile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/EditProfile.vue?vue&type=template&id=0e161f50&":
+/*!***************************************************************************************!*\
+  !*** ./resources/assets/js/components/EditProfile.vue?vue&type=template&id=0e161f50& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditProfile_vue_vue_type_template_id_0e161f50___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditProfile.vue?vue&type=template&id=0e161f50& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/EditProfile.vue?vue&type=template&id=0e161f50&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditProfile_vue_vue_type_template_id_0e161f50___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditProfile_vue_vue_type_template_id_0e161f50___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

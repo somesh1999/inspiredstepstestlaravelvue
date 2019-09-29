@@ -15,7 +15,7 @@ class ProfileController extends Controller
         $flag=0;
         $data= $request->all();
         //return Response()->json($data,201);
-        $userId = \Auth::user()->name;
+        $userId = \Auth::user()->id;
         if (\Auth::check())
         {
             $user = \Auth::User();
@@ -28,6 +28,7 @@ class ProfileController extends Controller
                 if($profile->$key || null == $profile->$key){
                     $profile->$key =$value;
                     if($profile->save()){
+                        \App\Profile::where('user_id', $userId)->update(['fill_status' => 1]);
                         $flag=1;
                     }else{
                         $flag=0;

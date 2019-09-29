@@ -18,6 +18,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/Example.vue').default);
 Vue.component('profile', require('./components/Profile.vue').default);
 Vue.component('profileview', require('./components/ViewProfile.vue').default);
+Vue.component('editprofile', require('./components/EditProfile.vue').default);
 
 import VueFlashMessage from 'vue-flash-message';
 Vue.use(VueFlashMessage);

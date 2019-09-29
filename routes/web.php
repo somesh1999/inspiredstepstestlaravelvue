@@ -22,7 +22,7 @@ Route::get('/register',function(){
     return redirect('/');
 });
 
-Route::group(['middleware' => 'auth:web'], function () {
+Route::group(['middleware' => 'auth:web', 'middleware' => 'checkprofilestatus'], function () {
     Route::get('/profile', 'ProfileController@index')->name('profile');
 });
 
